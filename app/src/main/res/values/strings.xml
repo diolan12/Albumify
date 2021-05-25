@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Songify</string>
+
+    <string name="desc_logo">Songify Logo</string>
+    <string name="desc_profile">Profile Picture</string>
+    <string name="desc_art">Art Cover</string>
+    <string name="desc_song_action_play">Play on Youtube Music</string>
+    <string name="desc_song_action_open">Open on Youtube Music</string>
+    <string name="desc_about_action_visit">Visit Profile</string>
+
+    <string name="action_share">Share</string>
+
+    <string name="title_albums">Albums</string>
+    <string name="title_songs">Songs</string>
+    <string name="title_about">About</string>
+
+    <string name="tn_song_art">tn_song_art</string>
+    <string name="tn_album_art">tn_album_art</string>
+
+</resources>
