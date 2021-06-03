@@ -4,14 +4,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.netcode.songify.R
 import com.netcode.songify.data.model.Song
 import com.netcode.songify.databinding.ActivityAlbumDetailBinding
-import com.netcode.songify.internal.CoroutineActivity
 import com.netcode.songify.internal.lazyViewModel
 import com.netcode.songify.ui.main.MainViewModel
 import com.netcode.songify.ui.main.MainViewModelFactory
@@ -22,15 +23,13 @@ import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.instance
 
-class AlbumDetailActivity: CoroutineActivity(), DIAware, SongsAdapter.OnItemClickListener {
+class AlbumDetailActivity: AppCompatActivity(), DIAware, SongsAdapter.OnItemClickListener {
     override val di by closestDI()
 
     private val mainViewModelFactory: MainViewModelFactory by instance()
     private lateinit var mainViewModel: MainViewModel
 
     private lateinit var binding: ActivityAlbumDetailBinding
-
-    private var songs = arrayListOf<Song>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,7 @@ class AlbumDetailActivity: CoroutineActivity(), DIAware, SongsAdapter.OnItemClic
         observe(id)
     }
 
-    private fun observe(id: Int) = launch {
+    private fun observe(id: Int) = lifecycleScope.launch {
         val album = mainViewModel.getAlbum(id)
         binding.apply {
             albumName.text = album.name

@@ -3,22 +3,20 @@ package com.netcode.songify.ui.main.songs.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.netcode.songify.R
 import com.netcode.songify.databinding.ActivitySongDetailBinding
-import com.netcode.songify.internal.CoroutineActivity
 import com.netcode.songify.internal.lazyViewModel
 import com.netcode.songify.ui.main.MainViewModel
 import com.netcode.songify.ui.main.MainViewModelFactory
 import kotlinx.coroutines.launch
-import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.instance
 
-class SongDetailActivity: CoroutineActivity(), DIAware {
+class SongDetailActivity: AppCompatActivity(), DIAware {
     override val di by closestDI()
 
     private val mainViewModelFactory: MainViewModelFactory by instance()
@@ -44,7 +42,7 @@ class SongDetailActivity: CoroutineActivity(), DIAware {
         observe(id)
     }
 
-    private fun observe(id: Int) = launch {
+    private fun observe(id: Int) = lifecycleScope.launch {
         val song = mainViewModel.getSong(id)
         binding.apply {
             songTitle.text = song.title

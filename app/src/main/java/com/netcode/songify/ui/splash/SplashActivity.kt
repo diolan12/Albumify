@@ -3,14 +3,15 @@ package com.netcode.songify.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.netcode.songify.R
 import com.netcode.songify.databinding.ActivitySplashBinding
-import com.netcode.songify.internal.CoroutineActivity
 import com.netcode.songify.ui.main.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashActivity: CoroutineActivity() {
+class SplashActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
 
@@ -24,7 +25,7 @@ class SplashActivity: CoroutineActivity() {
         goToMain()
     }
 
-    private fun goToMain() = launch {
+    private fun goToMain() = lifecycleScope.launch {
         delay(2000)
         Intent(this@SplashActivity, MainActivity::class.java).apply {
             startActivity(this)

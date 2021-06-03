@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.netcode.songify.data.model.Album
 import com.netcode.songify.databinding.FragmentAlbumsBinding
-import com.netcode.songify.internal.CoroutineFragment
 import com.netcode.songify.internal.lazyViewModel
 import com.netcode.songify.ui.main.MainViewModel
 import com.netcode.songify.ui.main.MainViewModelFactory
@@ -20,7 +19,7 @@ import org.kodein.di.DIAware
 import org.kodein.di.android.x.closestDI
 import org.kodein.di.instance
 
-class AlbumsFragment : CoroutineFragment(), DIAware, AlbumAdapter.OnItemClickListener {
+class AlbumsFragment : Fragment(), DIAware, AlbumAdapter.OnItemClickListener {
     override val di by closestDI()
 
     private val mainViewModelFactory: MainViewModelFactory by instance()
